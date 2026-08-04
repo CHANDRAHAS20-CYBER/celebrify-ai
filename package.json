@@ -1,0 +1,10 @@
+{
+  "name": "celebrify-ai",
+  "version": "1.0.0",
+  "description": "AI greeting card studio with Stripe-gated downloads.",
+  "private": true,
+  "scripts": {
+    "start:frontend": "npx serve -l 8000 .",
+    "start:backend": "cd backend && npm start"
+  }
+}
