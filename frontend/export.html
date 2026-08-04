@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your card is ready — Celebrify-AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/utilities.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/preview.css">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/payment.css">
+<link rel="stylesheet" href="css/export.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<div class="ambient-bg" aria-hidden="true">
+  <div class="ambient-glow glow-a"></div>
+  <div class="ambient-glow glow-b"></div>
+  <div class="ambient-grain"></div>
+</div>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="index.html" class="brand" aria-label="Celebrify-AI, go to homepage">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="26" height="26" fill="none"><path d="M6 14 L24 26 L42 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><rect x="6" y="10" width="36" height="26" rx="4" stroke="currentColor" stroke-width="2.4"/></svg>
+      </span>
+      <span class="brand__name">Celebrify&#8209;AI</span>
+    </a>
+    <div class="site-header__actions">
+      <button class="btn btn--icon" id="colorModeBtn" type="button" aria-pressed="false">
+        <span id="colorModeIcon" aria-hidden="true">🌙</span>
+        <span class="visually-hidden" id="colorModeLabel">Switch to light mode</span>
+      </button>
+      <button class="btn btn--ghost btn--small" id="restartBtn" type="button">Start a new card</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="result">
+    <div class="result__intro">
+      <p class="eyebrow">It's ready</p>
+      <h1 class="result__headline">Your card is sealed</h1>
+      <p class="result__desc">Here's how it turned out. Unlock the downloads, or go back and adjust anything.</p>
+    </div>
+
+    <div class="card-stage card-stage--result">
+      <div class="card" id="resultCard" data-style="elegant" data-theme="blush">
+        <div class="card__decor" aria-hidden="true"></div>
+        <div class="card__photo-wrap" id="resultPhotoWrap" hidden><img id="resultPhoto" alt=""></div>
+        <p class="card__occasion" id="resultOccasion">Happy Birthday</p>
+        <p class="card__date" id="resultDateDisplay" hidden></p>
+        <p class="card__message" id="resultMessage"></p>
+        <p class="card__signoff" id="resultSignoff">
+          <span id="resultTo"></span>
+          <span id="resultFrom"></span>
+        </p>
+      </div>
+      <div class="stamp-seal" id="stampSeal" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="34" height="34" fill="none"><path d="M12 21s-7.5-4.6-9.6-9C.7 8.7 2 5 6 5c2.3 0 3.7 1.4 6 3.7C14.3 6.4 15.7 5 18 5c4 0 5.3 3.7 3.6 7-2.1 4.4-9.6 9-9.6 9Z" fill="currentColor"/></svg>
+      </div>
+    </div>
+
+    <div class="paywall" id="paywallBlock">
+      <p class="paywall__price" id="paywallPrice">₹249 to download your card</p>
+      <button class="btn btn--primary btn--large" id="unlockBtn" type="button">Pay &amp; unlock downloads</button>
+      <p class="paywall__note">Secure checkout via Stripe. Nothing is charged until you complete payment.</p>
+      <p class="paywall__error" id="paywallError" role="alert"></p>
+    </div>
+
+    <div class="result__footer">
+      <div class="result__actions" id="downloadButtons" hidden>
+        <button class="btn btn--primary" id="downloadPngBtn" type="button">Download as PNG</button>
+        <button class="btn btn--secondary" id="downloadHtmlBtn" type="button">Download as HTML</button>
+        <button class="btn btn--secondary" id="downloadPdfBtn" type="button">Download as PDF</button>
+      </div>
+      <button class="btn btn--ghost" id="editBtn" type="button">Edit this card</button>
+    </div>
+  </div>
+</main>
+
+<div class="overlay" id="confirmOverlay" aria-hidden="true">
+  <div class="confirm-box" role="alertdialog" aria-modal="true" aria-labelledby="confirmMessage">
+    <p id="confirmMessage">Start a new card? Your current answers will be cleared.</p>
+    <div class="confirm-box__actions">
+      <button class="btn btn--ghost btn--small" id="confirmCancelBtn" type="button">Cancel</button>
+      <button class="btn btn--primary btn--small" id="confirmOkBtn" type="button">Start new card</button>
+    </div>
+  </div>
+</div>
+
+<canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+<canvas id="exportCanvas" class="visually-hidden"></canvas>
+<div class="visually-hidden" role="status" aria-live="polite" id="liveRegion"></div>
+
+<script src="js/constants.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/preview.js"></script>
+<script src="js/ui/ThemeSwitcher.js"></script>
+<script src="js/ui/Modal.js"></script>
+<script src="js/ui/Toast.js"></script>
+<script src="js/ui/Navbar.js"></script>
+<script src="js/export.js"></script>
+</body>
+</html>

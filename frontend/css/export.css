@@ -1,0 +1,42 @@
+/* ==========================================================================
+   export.css — result page layout (export.html and success.html): the
+   stamp-seal reveal, confetti canvas, and download action buttons.
+   ========================================================================== */
+
+.result { max-width: 780px; margin: 0 auto; text-align: center; }
+.result__headline { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 500; margin-bottom: 0.6rem; }
+.result__desc { color: var(--text-mid); max-width: 46ch; margin: 0 auto; }
+.result__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 1rem; }
+.result__footer { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-top: 1rem; }
+
+.stamp-seal {
+  position: absolute; top: -6px; right: calc(50% - 190px);
+  width: 60px; height: 60px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--berry-light), var(--berry) 60%, #8f2740 100%);
+  display: flex; align-items: center; justify-content: center; color: var(--paper);
+  box-shadow: 0 10px 20px -6px rgba(140,30,60,0.6);
+  transform: scale(0) rotate(-30deg);
+  opacity: 0;
+}
+.stamp-seal.is-stamping { animation: stampDown 0.6s var(--ease-out) forwards; }
+
+.confetti-canvas { position: fixed; inset: 0; z-index: 95; pointer-events: none; }
+
+/* Print / PDF export */
+@media print {
+  body.is-printing .site-header,
+  body.is-printing .ambient-bg,
+  body.is-printing .result__intro,
+  body.is-printing .result__footer,
+  body.is-printing .paywall,
+  body.is-printing .stamp-seal,
+  body.is-printing .site-footer {
+    display: none !important;
+  }
+  body.is-printing .page { display: block !important; padding: 0; }
+  body.is-printing .card-stage--result { margin: 0; }
+  body.is-printing .card {
+    box-shadow: none !important; width: 100%; height: 100vh; aspect-ratio: auto;
+    border-radius: 0; page-break-inside: avoid;
+  }
+}

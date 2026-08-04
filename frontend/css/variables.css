@@ -1,0 +1,68 @@
+/* ==========================================================================
+   variables.css — design tokens (colors, type, shape, motion) + the
+   dark/light color-mode override. Load this first, before any other
+   stylesheet.
+   ========================================================================== */
+
+:root {
+  /* Core palette */
+  --ink-900: #201a33;
+  --ink-800: #2b2340;
+  --ink-700: #392f52;
+  --paper: #faf6ee;
+  --paper-dim: #f1ead9;
+  --berry: #c6395a;
+  --berry-light: #e26c86;
+  --gold: #c79a3c;
+  --gold-light: #e6c877;
+  --sage: #6e8f71;
+
+  /* Semantic */
+  --bg: var(--ink-900);
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-strong: rgba(255, 255, 255, 0.1);
+  --border-soft: rgba(255, 255, 255, 0.14);
+  --text-hi: var(--paper);
+  --text-mid: rgba(250, 246, 238, 0.72);
+  --text-low: rgba(250, 246, 238, 0.48);
+  --accent: var(--berry);
+  --accent-2: var(--gold);
+  --danger: #e0637a;
+  --focus-ring: #f2d68c;
+
+  /* Type */
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-body: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-script: "Caveat", cursive;
+
+  /* Shape + motion */
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 20px 50px -20px rgba(10, 6, 20, 0.55);
+  --shadow-tight: 0 8px 20px -10px rgba(10, 6, 20, 0.5);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.18s;
+  --dur-med: 0.4s;
+  --dur-slow: 0.7s;
+}
+
+/* Light mode — toggled via the header button (ui/ThemeSwitcher.js),
+   persisted in localStorage. */
+html[data-color-mode="light"] {
+  --bg: #f3ede0;
+  --surface: rgba(32, 26, 51, 0.05);
+  --surface-strong: rgba(32, 26, 51, 0.09);
+  --border-soft: rgba(32, 26, 51, 0.14);
+  --text-hi: #241f38;
+  --text-mid: rgba(36, 31, 56, 0.7);
+  --text-low: rgba(36, 31, 56, 0.48);
+}
+html[data-color-mode="light"] .site-header {
+  background: rgba(243, 237, 224, 0.7);
+}
+html[data-color-mode="light"] .ambient-grain {
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+}

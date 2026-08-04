@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create your card — Celebrify-AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/utilities.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/preview.css">
+<link rel="stylesheet" href="css/themes.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/creator.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<div class="ambient-bg" aria-hidden="true">
+  <div class="ambient-glow glow-a"></div>
+  <div class="ambient-glow glow-b"></div>
+  <div class="ambient-grain"></div>
+</div>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="index.html" class="brand" aria-label="Celebrify-AI, go to homepage">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="26" height="26" fill="none"><path d="M6 14 L24 26 L42 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><rect x="6" y="10" width="36" height="26" rx="4" stroke="currentColor" stroke-width="2.4"/></svg>
+      </span>
+      <span class="brand__name">Celebrify&#8209;AI</span>
+    </a>
+    <div class="site-header__actions">
+      <button class="btn btn--icon" id="colorModeBtn" type="button" aria-pressed="false">
+        <span id="colorModeIcon" aria-hidden="true">🌙</span>
+        <span class="visually-hidden" id="colorModeLabel">Switch to light mode</span>
+      </button>
+      <button class="btn btn--ghost btn--small" id="restartBtn" type="button">Start a new card</button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <h1 class="visually-hidden">Create your card</h1>
+
+  <nav class="progress" aria-label="Card creation progress">
+    <ol class="progress__track" id="progressTrack"></ol>
+  </nav>
+
+  <div class="wizard">
+    <div class="wizard__panel">
+      <form id="cardForm" novalidate>
+
+        <fieldset class="step is-active" data-step="0" data-key="recipient">
+          <legend class="step__title">Who is this for?</legend>
+          <p class="step__hint">This shapes the tone of the writing suggestions.</p>
+          <div class="option-grid" role="radiogroup" aria-label="Recipient"></div>
+          <div class="field field--inline" id="customRecipientField" hidden>
+            <label for="customRecipient">Describe who it's for</label>
+            <input type="text" id="customRecipient" maxlength="40" placeholder="e.g. My mentor">
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="1" data-key="occasion">
+          <legend class="step__title">What's the occasion?</legend>
+          <p class="step__hint">We'll tailor the card's mood to match.</p>
+          <div class="field field--search">
+            <label for="occasionSearch" class="visually-hidden">Search occasions</label>
+            <input type="text" id="occasionSearch" placeholder="Search occasions…" autocomplete="off">
+          </div>
+          <div class="option-grid option-grid--occasion" role="radiogroup" aria-label="Occasion" id="occasionGrid"></div>
+          <p class="empty-hint" id="occasionEmptyHint" hidden>No occasions match that search.</p>
+          <div class="field field--inline" id="customOccasionField" hidden>
+            <label for="customOccasion">Name the occasion</label>
+            <input type="text" id="customOccasion" maxlength="40" placeholder="e.g. New puppy day">
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="2" data-key="style">
+          <legend class="step__title">Choose a card style</legend>
+          <p class="step__hint">The overall look and decorative details.</p>
+          <div class="option-grid option-grid--style" role="radiogroup" aria-label="Card style"></div>
+        </fieldset>
+
+        <fieldset class="step" data-step="3" data-key="theme">
+          <legend class="step__title">Pick a color theme</legend>
+          <p class="step__hint" id="themeHint">Sets the palette for the whole card.</p>
+          <div class="swatch-grid" id="swatchGrid" role="radiogroup" aria-label="Color theme"></div>
+        </fieldset>
+
+        <fieldset class="step" data-step="4" data-key="upload">
+          <legend class="step__title">Add photos, video, or voice <span class="optional">(all optional)</span></legend>
+          <p class="step__hint">A personal touch makes the card unmistakably theirs. The first photo appears on the card.</p>
+          <div class="uploader" id="uploader">
+            <input type="file" id="imageInput" accept="image/*" class="visually-hidden" multiple>
+            <label for="imageInput" class="uploader__dropzone" id="dropzone">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4m0 0L7 9m5-5l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span class="uploader__label">Choose up to 4 photos, or drag them here</span>
+              <span class="uploader__meta">JPG or PNG, up to 8MB each</span>
+            </label>
+            <div class="photo-gallery" id="photoGallery" aria-label="Uploaded photos"></div>
+          </div>
+          <div class="field field--upload-secondary">
+            <label for="videoInput">Optional video message</label>
+            <input type="file" id="videoInput" accept="video/*">
+            <div class="media-preview" id="videoPreview" hidden>
+              <video id="videoPreviewEl" controls></video>
+              <button type="button" class="btn btn--ghost btn--small" id="removeVideoBtn">Remove video</button>
+            </div>
+            <p class="field__meta">Previews in the studio now; will play inside the animated send-off in a future update.</p>
+          </div>
+          <div class="field field--upload-secondary">
+            <label for="audioInput">Optional voice message</label>
+            <input type="file" id="audioInput" accept="audio/*">
+            <div class="media-preview" id="audioPreview" hidden>
+              <audio id="audioPreviewEl" controls></audio>
+              <button type="button" class="btn btn--ghost btn--small" id="removeAudioBtn">Remove voice message</button>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="step" data-step="5" data-key="personalize">
+          <legend class="step__title">Personalize it</legend>
+          <p class="step__hint">Names, a date if it matters, and your message.</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="recipientName">Recipient's name</label>
+              <input type="text" id="recipientName" maxlength="40" placeholder="e.g. Priya" autocomplete="off" required>
+              <p class="field__error" id="recipientNameError" role="alert"></p>
+            </div>
+            <div class="field">
+              <label for="senderName">Your name</label>
+              <input type="text" id="senderName" maxlength="40" placeholder="e.g. Sam" autocomplete="off" required>
+              <p class="field__error" id="senderNameError" role="alert"></p>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="nickname">Nickname <span class="optional">(optional)</span></label>
+              <input type="text" id="nickname" maxlength="30" placeholder="e.g. Bug, Champ" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="cardDate">Date <span class="optional">(optional)</span></label>
+              <input type="date" id="cardDate">
+            </div>
+          </div>
+          <div class="field">
+            <label for="messageText">Your message</label>
+            <textarea id="messageText" rows="5" maxlength="280" placeholder="Write something only you would say..." required></textarea>
+            <div class="field__row">
+              <p class="field__error" id="messageError" role="alert"></p>
+              <p class="field__count"><span id="messageCount">0</span>/280</p>
+            </div>
+          </div>
+          <div class="suggestion-chips" id="suggestionChips" aria-label="Message starters"></div>
+        </fieldset>
+
+      </form>
+    </div>
+
+    <aside class="wizard__preview" aria-label="Live card preview">
+      <div class="preview-sticky">
+        <p class="preview-label">Live preview</p>
+        <div class="card-stage">
+          <div class="card" id="cardCard" data-style="elegant" data-theme="blush">
+            <div class="card__decor" aria-hidden="true"></div>
+            <div class="card__photo-wrap" id="cardPhotoWrap" hidden><img id="cardPhoto" alt=""></div>
+            <p class="card__occasion" id="cardOccasion">Happy Birthday</p>
+            <p class="card__date" id="cardDateDisplay" hidden></p>
+            <p class="card__message" id="cardMessage">Your message will appear here as you write it.</p>
+            <p class="card__signoff" id="cardSignoff">
+              <span id="cardTo">To Someone Wonderful</span>
+              <span id="cardFrom">— From You</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="wizard__nav">
+    <button class="btn btn--ghost" id="prevBtn" type="button">Back</button>
+    <p class="wizard__step-count"><span id="stepCurrent">1</span> of <span id="stepTotal">6</span></p>
+    <button class="btn btn--primary" id="nextBtn" type="button">Continue</button>
+  </div>
+</main>
+
+<div class="overlay" id="loadingOverlay" aria-hidden="true">
+  <div class="overlay__inner">
+    <div class="ink-loader" aria-hidden="true"><span></span><span></span><span></span></div>
+    <p id="loadingMessage">Choosing the right words…</p>
+  </div>
+</div>
+
+<div class="overlay" id="confirmOverlay" aria-hidden="true">
+  <div class="confirm-box" role="alertdialog" aria-modal="true" aria-labelledby="confirmMessage">
+    <p id="confirmMessage">Start a new card? Your current answers will be cleared.</p>
+    <div class="confirm-box__actions">
+      <button class="btn btn--ghost btn--small" id="confirmCancelBtn" type="button">Cancel</button>
+      <button class="btn btn--primary btn--small" id="confirmOkBtn" type="button">Start new card</button>
+    </div>
+  </div>
+</div>
+
+<div class="visually-hidden" role="status" aria-live="polite" id="liveRegion"></div>
+
+<script src="js/constants.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/validator.js"></script>
+<script src="js/preview.js"></script>
+<script src="js/uploader.js"></script>
+<script src="js/ui/ThemeSwitcher.js"></script>
+<script src="js/ui/Modal.js"></script>
+<script src="js/ui/Toast.js"></script>
+<script src="js/ui/Loader.js"></script>
+<script src="js/ui/Navbar.js"></script>
+<script src="js/ui/Wizard.js"></script>
+<script src="js/creator.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Celebrify-AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/utilities.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/payment.css">
+<link rel="stylesheet" href="css/responsive.css">
+<!-- Razorpay's checkout script — required for the payment modal; this is
+     the one deliberate exception to "no external libraries", since a
+     payment SDK has to come from the payment provider's own domain. -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+<div class="ambient-bg" aria-hidden="true">
+  <div class="ambient-glow glow-a"></div>
+  <div class="ambient-glow glow-b"></div>
+  <div class="ambient-grain"></div>
+</div>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="index.html" class="brand" aria-label="Celebrify-AI, go to homepage">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="26" height="26" fill="none"><path d="M6 14 L24 26 L42 14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><rect x="6" y="10" width="36" height="26" rx="4" stroke="currentColor" stroke-width="2.4"/></svg>
+      </span>
+      <span class="brand__name">Celebrify&#8209;AI</span>
+    </a>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="payment-status">
+    <p class="payment-status__title" id="paymentStatus">Ready when you are.</p>
+    <p class="paywall__price" id="paymentAmount">₹249</p>
+    <button class="btn btn--primary btn--large" id="payNowBtn" type="button">Pay now</button>
+    <p class="paywall__note">Secure checkout via Razorpay. UPI, cards, and netbanking all supported.</p>
+    <p class="payment-status__error" id="paymentError" hidden></p>
+    <div class="payment-status__actions">
+      <button class="btn btn--ghost btn--small" id="cancelPaymentBtn" type="button">Cancel</button>
+    </div>
+  </div>
+</main>
+
+<div class="visually-hidden" role="status" aria-live="polite" id="liveRegion"></div>
+
+<script src="js/constants.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/payment.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+/* ==========================================================================
+   payment.css — the paywall block on export.html, and the interstitial
+   status card on payment.html.
+   ========================================================================== */
+
+.paywall {
+  max-width: 380px; margin: 2rem auto 0;
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg); padding: 1.8rem; text-align: center;
+  backdrop-filter: blur(14px);
+}
+.paywall__price { font-family: var(--font-display); font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem; }
+.paywall__note { font-size: 0.78rem; color: var(--text-low); margin-top: 0.9rem; }
+.paywall__error { color: var(--danger); font-size: 0.85rem; margin-top: 0.6rem; min-height: 1.1em; }
+.paywall.is-unlocked { display: none; }
+
+.payment-status {
+  max-width: 420px; margin: 4rem auto; text-align: center;
+  background: var(--surface); border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg); padding: 2.4rem 1.8rem; backdrop-filter: blur(14px);
+}
+.payment-status .ink-loader { margin-bottom: 1.2rem; justify-content: center; }
+.payment-status__title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 500; margin-bottom: 0.6rem; }
+.payment-status__error {
+  margin-top: 1rem; color: var(--danger); font-size: 0.85rem; line-height: 1.5;
+  background: rgba(224,99,122,0.1); border: 1px solid rgba(224,99,122,0.3);
+  border-radius: var(--radius-sm); padding: 0.8rem 1rem;
+}
+.payment-status__actions { display: flex; gap: 0.7rem; justify-content: center; margin-top: 1.2rem; }
