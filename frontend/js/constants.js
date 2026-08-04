@@ -307,4 +307,4 @@ const MAX_PHOTOS = 4;
 
 // Where the payment backend lives. Change this to your deployed backend's
 // URL once you deploy it (see backend/README or docs/API.md).
-window.CELEBRIFY_CONFIG = window.CELEBRIFY_CONFIG || { API_BASE_URL: "http://localhost:8080" };
+window.CELEBRIFY_CONFIG = window.CELEBRIFY_CONFIG || { API_BASE_URL: "https://celebrify-backend.onrender.com" };
